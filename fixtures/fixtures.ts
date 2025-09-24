@@ -5,6 +5,9 @@ import { SuccessPage } from "../pages/successPage";
 import { HomePage } from "../pages/homePage";
 import { Navbar } from "../pages/components/navbar";
 import { AccountPage } from "../pages/accountPage";
+import { SearchResultsPage } from "../pages/searchResultsPage";
+import { CartPage } from "../pages/cartPage";
+
 
 type MyFixtures = {
   homePage: HomePage;
@@ -13,6 +16,8 @@ type MyFixtures = {
   successPage: SuccessPage;
   accountPage: AccountPage;
   navbar: Navbar;
+  cartPage: CartPage;
+  searchResultsPage: SearchResultsPage;
   loggedIn:  Promise<void>;
 };
 
@@ -34,6 +39,12 @@ export const test = base.extend<MyFixtures>({
   },
   navbar: async ({ page }: { page: Page }, use) => {
     await use(new Navbar(page));
+  },
+  searchResultsPage: async ({ page }: { page: Page }, use) => {
+    await use(new SearchResultsPage(page));
+  },
+  cartPage: async ({ page }: { page: Page }, use) => {
+    await use(new CartPage(page));
   },
   loggedIn: async ({ page, navbar, loginPage }, use) => {
     await page.goto('/');
