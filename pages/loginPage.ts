@@ -22,9 +22,9 @@ export class LoginPage {
         await this.btn_continue.click();
     }
     async loggin(username: string, password: string) {
-    await this.username.fill(username);
-    await this.password.fill(password);
-    await this.btn_login.click();
-}
+        await this.username.fill(username);
+        await this.password.fill(password);
+        await this.btn_login.click();
+    }
     
 }

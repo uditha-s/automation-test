@@ -16,7 +16,7 @@ export class Navbar {
 
     this.btn_loginOrRegister = page.locator('a', { hasText: 'Login or register' });
     this.btn_account = page.locator('a.top.menu_account'); 
-    this.btn_logout = page.locator('a', { hasText: 'Logout' }); 
+    this.btn_logout = page.locator('li[data-id="menu_logout"] a');
     this.btn_cart = page.locator('a.top.nobackground'); 
     this.btn_checkout = page.locator('a.top.menu_checkout');
     this.input_search = page.locator('#filter_keyword');
@@ -38,6 +38,11 @@ export class Navbar {
     await this.btn_cart.click();
   }
 
+  async logout() {
+    await this.btn_account.hover();
+    await this.btn_logout.click();
+  }
+
 
   async goToCheckout() {
     await this.btn_checkout.click();
@@ -47,4 +52,6 @@ export class Navbar {
     await this.input_search.fill(item);
     await this.btn_search.click();
   }
+
+
 }

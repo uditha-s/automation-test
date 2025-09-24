@@ -11,8 +11,9 @@ type MyFixtures = {
   loginPage: LoginPage;
   createAccountPage: CreateAccountPage;
   successPage: SuccessPage;
-  navbar: Navbar;
   accountPage: AccountPage;
+  navbar: Navbar;
+  loggedIn:  Promise<void>;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -28,12 +29,20 @@ export const test = base.extend<MyFixtures>({
   successPage: async ({ page }: { page: Page }, use) => {
     await use(new SuccessPage(page));
   },
+  accountPage: async ({ page }: { page: Page }, use) => {
+    await use(new AccountPage(page));
+  },
   navbar: async ({ page }: { page: Page }, use) => {
     await use(new Navbar(page));
   },
-  accountPage: async ({ page }: { page: Page }, use) => {
-    await use(new AccountPage(page));
-  }
+  loggedIn: async ({ page, navbar, loginPage }, use) => {
+    await page.goto('/');
+    await expect(page).toHaveURL('/');
+    await navbar.goToLogin();
+    await loginPage.loggin(process.env.USERNAME_LOGIN!, process.env.PASSWORD_LOGIN!);
+    await expect(page).toHaveURL(/.*account/);
+    await use();
+  },
 });
 
 export const expect = test.expect;
