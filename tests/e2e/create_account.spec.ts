@@ -82,8 +82,7 @@ test.describe("User account creation", () => {
       username: faker.internet.password(),
       password: faker.internet.password(),
       confirmPassword: faker.internet.password(),
-    };
-    
+    };  
     await createAccountPage.fillDetails(userData);
     await createAccountPage.clickOnContinue();
     await successPage.clickOnContiue();
