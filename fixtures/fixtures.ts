@@ -4,6 +4,7 @@ import { LoginPage } from "../pages/loginPage";
 import { SuccessPage } from "../pages/successPage";
 import { HomePage } from "../pages/homePage";
 import { Navbar } from "../pages/components/navbar";
+import { AccountPage } from "../pages/accountPage";
 
 type MyFixtures = {
   homePage: HomePage;
@@ -11,6 +12,7 @@ type MyFixtures = {
   createAccountPage: CreateAccountPage;
   successPage: SuccessPage;
   navbar: Navbar;
+  accountPage: AccountPage;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -29,6 +31,9 @@ export const test = base.extend<MyFixtures>({
   navbar: async ({ page }: { page: Page }, use) => {
     await use(new Navbar(page));
   },
+  accountPage: async ({ page }: { page: Page }, use) => {
+    await use(new AccountPage(page));
+  }
 });
 
 export const expect = test.expect;

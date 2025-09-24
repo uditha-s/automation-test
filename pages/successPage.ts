@@ -8,7 +8,7 @@ export class SuccessPage {
 
     constructor(page: Page) {
     this.page = page;
-       this.btn_continue = page.getByRole('button', { name: 'Continue' });
+       this.btn_continue = page.getByText('Continue', { exact: false });
 
     }
 

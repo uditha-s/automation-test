@@ -1,6 +1,6 @@
 import { Page, Locator } from "@playwright/test";
 export class CreateAccountPage {
- 
+  
   readonly page: Page;
   readonly fristName: Locator;
   readonly lastName: Locator;
@@ -16,44 +16,39 @@ export class CreateAccountPage {
   readonly privecyPolicy: Locator
   readonly btn_continue: Locator
 
-
-  
-
-    constructor(page: Page) {
+  constructor(page: Page) {
     this.page = page;
-         this.fristName = page.locator("AccountFrm_firstname");  
-            this.lastName = page.locator("AccountFrm_lastname");
-            this.email = page.locator("AccountFrm_email");
-            this.address = page.locator("AccountFrm_address_1");
-            this.city = page.locator("AccountFrm_city");
-            this.region = page.locator("AccountFrm_zone_id");
-            this.postalCode = page.locator("AccountFrm_postcode");
-            this.country = page.locator("AccountFrm_country_id");
-            this.username = page.locator("AccountFrm_loginname");
-            this.password = page.locator("AccountFrm_password");
-            this.usernameConfirm = page.locator("AccountFrm_confirm");
-            this.privecyPolicy = page.locator("AccountFrm_agree");
-            this.btn_continue = page.getByRole('button', { name: 'Continue' });
+    this.fristName = page.locator("#AccountFrm_firstname");
+    this.lastName = page.locator("#AccountFrm_lastname");
+    this.email = page.locator("#AccountFrm_email");
+    this.address = page.locator("#AccountFrm_address_1");
+    this.city = page.locator("#AccountFrm_city");
+    this.region = page.locator("#AccountFrm_zone_id");
+    this.postalCode = page.locator("#AccountFrm_postcode");
+    this.country = page.locator("#AccountFrm_country_id");
+    this.username = page.locator("#AccountFrm_loginname");
+    this.password = page.locator("#AccountFrm_password");
+    this.usernameConfirm = page.locator("#AccountFrm_confirm");
+    this.privecyPolicy = page.locator("#AccountFrm_agree");
+    this.btn_continue = page.getByRole('button', { name: 'Continue' });
+  }
 
-    }
+  async fillDetails(data: { firstName: any; lastName: any; email: any; address: any; city: any; region: any; postalCode: any; country: any; username?: string; password: any; confirmPassword?: string; }) {
+    await this.fristName.fill(data.firstName);
+    await this.lastName.fill(data.lastName);
+    await this.email.fill(data.email);
+    await this.address.fill(data.address);
+    await this.city.fill(data.city);
+    await this.region.selectOption(data.region);
+    await this.postalCode.fill(data.postalCode);
+    await this.country.selectOption(data.country);
+    await this.username.fill(data.password);
+    await this.password.fill(data.password);
+    await this.usernameConfirm.fill(data.password);
+    await this.privecyPolicy.check();
+  }
 
-    async fillDetails() {
-        await this.fristName.fill("test");
-        await this.lastName.fill("user");
-        await this.email.fill("testuser @gmail.com");
-        await this.address.fill("123,abc street");
-        await this.city.fill("New York");
-        await this.region.selectOption("New York");
-        await this.postalCode.fill("10001");
-        await this.country.selectOption("United States");
-        await this.username.fill("testuser");
-        await this.password.fill("testuser@123");
-        await this.usernameConfirm.fill("testuser@123");
-        await this.privecyPolicy.check();
-        
-    }
-    async clickOnContinue() {
-        await this.btn_continue.click();    
-    }
-    
+  async clickOnContinue() {
+    await this.btn_continue.click();
+  }
 }
