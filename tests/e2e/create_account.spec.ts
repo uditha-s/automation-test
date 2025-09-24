@@ -3,20 +3,20 @@ import { faker } from '@faker-js/faker';
 
 test.describe("User account creation", () => {
   test('User can navigate to home page', async ({ page }) => {
-    await page.goto('https://automationteststore.com/');
-    await expect(page).toHaveURL('https://automationteststore.com/');
+    await page.goto('/');
+    await expect(page).toHaveURL('/');
   });
 
   test('verify that user can navigate to the create account page ', async ({ page, navbar, loginPage }) => {
-    await page.goto('https://automationteststore.com/');
-    await expect(page).toHaveURL('https://automationteststore.com/');
+    await page.goto('/');
+    await expect(page).toHaveURL('/');
     await navbar.goToLogin();
     await loginPage.clickOnContiue();
   });
 
   test('verify that user able to fill mandatory field when creating new account ', async ({ page, navbar, loginPage, createAccountPage }) => {
-    await page.goto('https://automationteststore.com/');
-    await expect(page).toHaveURL('https://automationteststore.com/');
+    await page.goto('/');
+    await expect(page).toHaveURL('/');
     await navbar.goToLogin();
     await loginPage.clickOnContiue();
 
@@ -39,8 +39,8 @@ test.describe("User account creation", () => {
   });
 
   test('verify that user able to create new account', async ({ page, navbar, loginPage, createAccountPage,successPage }) => {
-    await page.goto('https://automationteststore.com/');
-    await expect(page).toHaveURL('https://automationteststore.com/');
+    await page.goto('/');
+    await expect(page).toHaveURL('/');
     await navbar.goToLogin();
     await loginPage.clickOnContiue();
 
@@ -64,8 +64,8 @@ test.describe("User account creation", () => {
   });
 
   test('verify that new user able to navigate home page after creating new account', async ({ page, navbar, loginPage, createAccountPage,successPage,accountPage}) => {
-    await page.goto('https://automationteststore.com/');
-    await expect(page).toHaveURL('https://automationteststore.com/');
+    await page.goto('/');
+    await expect(page).toHaveURL('/');
     await navbar.goToLogin();
     await loginPage.clickOnContiue();
 
