@@ -16,8 +16,7 @@ export class Navbar {
     this.page = page;
 
     this.btn_loginOrRegister = page.locator('a', { hasText: 'Login or register' });
-    this.btn_account = page.locator('a.top.menu_account'); 
-    this.btn_logout = page.locator('li[data-id="menu_logout"] a');
+    this.btn_account = page.locator('li[data-id="menu_account"] > a.top.menu_account');    this.btn_logout = page.locator('li[data-id="menu_logout"] a');
     this.btn_cart = page.locator('a.top.nobackground'); 
     this.btn_checkout = page.locator('a.top.menu_checkout');
     this.input_search = page.locator('#filter_keyword');
