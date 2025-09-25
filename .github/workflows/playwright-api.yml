@@ -2,10 +2,15 @@ name: Playwright API Tests
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
+    paths:
+      - 'api/**'  
+      - 'tests/api/**'
   pull_request:
-    branches: [ main, master ]
-
+    branches: [main, master]
+    paths:
+      - 'api/**'
+      - 'tests/api/**'
 jobs:
   run_api_tests:
     runs-on: ubuntu-latest
