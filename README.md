@@ -1,4 +1,4 @@
-# Automation Test Repository 🚀
+# Automation Test Repository for automationteststore.com
 
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green)](https://nodejs.org/)
 [![Playwright](https://img.shields.io/badge/Playwright-1.x-blue)](https://playwright.dev/)
@@ -24,13 +24,60 @@ This repository contains automated tests for web applications using **Playwright
 - **JavaScript / TypeScript** – Test scripting  
 - **Faker.js** – Dynamic test data  
 - **GitHub Actions** – CI/CD integration  
-- **Postman / JMeter** (optional) – API & performance testing  
+- **Postman** – API testing  
 
 ---
 
 ## ⚙️ Setup Instructions
 
 1. **Clone the repository**
-```bash
+
 git clone https://github.com/uditha-s/automation-test.git
 cd automation-test
+
+2. **Install dependencies**
+npm install
+
+3. **Install Playwright browsers**
+npx playwright install
+
+4. **Setup environment variables**
+Create a .env file in the root directory
+
+*BASE_URL=https://automationteststore.com*<br>
+*USERNAME=your_username*<br>
+*PASSWORD=your_password*<br>
+
+---
+
+## ⚙️ Running Tests Locally
+
+1. **Run all tests**<br>
+npx playwright test
+
+2. **Run a specific test with tag**<br>
+
+npx playwright test --grep-invert @cart <br>
+or <br>
+npx playwright test tests/path/to/testFile.spec.ts<br>
+
+
+3. **Run tests in headed mode**<br>
+
+npx playwright test --headed<br>
+
+4. **Run tests in a specific browser**<br>
+
+npx playwright test --project=chromium<br>
+npx playwright test --project=firefox<br>
+npx playwright test --project=webkit<br>
+
+
+
+5. **Generate HTML report**<br>
+
+npx playwright show-report<br>
+
+
+
+
