@@ -1,5 +1,4 @@
 import { test, expect } from "../../fixtures/fixtures";
-import { faker } from '@faker-js/faker';
 import { generateUserData } from "../../testdata/userData";
 
 test.describe("User account creation", () => {
@@ -20,26 +19,19 @@ test.describe("User account creation", () => {
 
 
     const userData = generateUserData();
-
     await createAccountPage.fillDetails(userData);
     await createAccountPage.clickOnContinue();
   });
 
   test('verify that user able to create new account', async ({ page, navbar, loginPage, createAccountPage, successPage }) => {
-
-
     const userData = generateUserData();
-
     await createAccountPage.fillDetails(userData);
     await createAccountPage.clickOnContinue();
     await successPage.clickOnContiue();
   });
 
   test('verify that new user able to navigate home page after creating new account', async ({ page, navbar, loginPage, createAccountPage, successPage, accountPage,homePage }) => {
-
-
     const userData = generateUserData();
-
     await createAccountPage.fillDetails(userData);
     await createAccountPage.clickOnContinue();
     await successPage.clickOnContiue();
@@ -47,5 +39,18 @@ test.describe("User account creation", () => {
     const savedName = createAccountPage.getFirstName();
     await navbar.verifyFirstName(savedName!);
 
+  });
+    test('verify that user cant create account without agree to privacy policy details', async ({ page, navbar, loginPage, createAccountPage, successPage }) => {
+    const userData = generateUserData();
+    await createAccountPage.fillDetails(userData);
+    await createAccountPage.uncheckPrivacyPolicy();
+    await createAccountPage.clickOnContinue();
+    await createAccountPage.verifyPrivacyPolicyError();
+  });
+ test('verify that user cant create account without filling details', async ({ page, navbar, loginPage, createAccountPage, successPage }) => {
+    
+    await createAccountPage.checkPrivacyPolicy();
+    await createAccountPage.clickOnContinue();
+    await createAccountPage.verifydatamissingError();
   });
 });

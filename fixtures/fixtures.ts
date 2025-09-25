@@ -65,7 +65,7 @@ export const test = base.extend<MyFixtures>({
     await page.goto('/');
     await expect(page).toHaveURL('/');
     await navbar.goToLogin();
-    await loginPage.loggin(process.env.USERNAME_LOGIN!, process.env.PASSWORD_LOGIN!);
+    await loginPage.login(process.env.USERNAME_LOGIN!, process.env.PASSWORD_LOGIN!);
     await expect(page).toHaveURL(/.*account/);
     await use();
   },

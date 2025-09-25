@@ -8,6 +8,7 @@ export class SearchResultsPage {
   readonly quantityInput: Locator;
   readonly removeButtons: Locator;
   readonly emptyCartMessage: Locator;
+  readonly outOfStockMessage: Locator; 
 
     constructor(page: Page) {
     this.page = page;
@@ -17,6 +18,7 @@ export class SearchResultsPage {
     this.quantityInput = page.locator("#product_quantity"); 
     this.removeButtons = page.locator("a.btn.btn-sm.btn-default i.fa-trash-o");
     this.emptyCartMessage = page.locator("text=Your shopping cart is empty!");
+     this.outOfStockMessage = page.locator('span.nostock');
     }
 
     async clickOnContiue() {
@@ -41,5 +43,12 @@ export class SearchResultsPage {
     async verifyCartIsEmpty() {
     await expect(this.emptyCartMessage).toBeVisible();
   }
+  async verifySearchResultsContain(term: string) {
+    const productTitles = this.page.locator('div.productname a');
+    const count = await productTitles.count();
   }
+  async verifyOutOfTheStock() {
+    await expect(this.outOfStockMessage).toBeVisible();
+  }
+}
 

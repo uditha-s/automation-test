@@ -17,7 +17,7 @@ export class CartPage {
     }
 
     async removeItem() {
-        await this.removeButton.click();
+        await this.removeButton.last().click();
         await this.page.waitForLoadState('domcontentloaded');
     }
 
@@ -30,6 +30,16 @@ export class CartPage {
     async checkout() {
          await this.checkoutButton.click();
         await this.page.waitForLoadState('domcontentloaded');
+    }
+    async verifyRemovedItemNotInCart(removedItemName: string) {
+        const cartItems = this.page.locator('table tbody tr td:nth-child(2) a');
+        const itemCount = await cartItems.count();  
+        for (let i = 0; i < itemCount; i++) {
+            const itemName = await cartItems.nth(i).innerText();    
+            if (itemName.trim() === removedItemName) {
+                throw new Error(`Item "${removedItemName}" was found in the cart after removal.`);
+            }   
+        }
     }
 
 }

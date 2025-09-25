@@ -1,5 +1,4 @@
 import { test, expect } from "../../fixtures/fixtures";
-import { CartPage } from "../../pages/cartPage";
 
 test.describe("User checout cart items", () => {
 

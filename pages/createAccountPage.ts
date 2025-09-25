@@ -1,4 +1,4 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 export class CreateAccountPage {
   
   readonly page: Page;
@@ -66,6 +66,20 @@ export class CreateAccountPage {
         `First name mismatch: expected ${this.savedFirstName}, got ${value}`
       );
     }
+    }
+
+    async uncheckPrivacyPolicy() {
+        await this.privecyPolicy.uncheck();
+    } 
+    async verifyPrivacyPolicyError() {
+      await expect(this.page.locator(".alert.alert-danger"))
+          .toHaveText("× Error: You must agree to the Privacy Policy!");
+    }
+    async checkPrivacyPolicy() {
+        await this.privecyPolicy.check();
+    }
+    async verifydatamissingError() {
+      expect(this.page.locator(".alert.alert-danger"));
     }
 
 }

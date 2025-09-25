@@ -2,6 +2,8 @@ import { test, expect } from "../../fixtures/fixtures";
 import "../../utils/randomSearch"
 import searchData from "../../testdata/searchRandomData.json";
 import { getRandomItem } from "../../utils/randomSearch";
+import { products } from "../../testdata/product";
+import { emptyProducts } from "../../testdata/emptyProducts";
 
 
 test.describe("User search items and add to cart ", () => {
@@ -24,36 +26,47 @@ test.describe("User search items and add to cart ", () => {
   });
    test('verify that user can add items in to the cart by search ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage }) => {
    await accountPage.navigateToHome();
-   await navbar.searchForItem("Skinsheen Bronzer Stick");
+   await navbar.searchForItem(products.bronzer);
+   await searchResultsPage.verifySearchResultsContain(products.bronzer);
    await searchResultsPage.addItemToCart();
-
+   
   });
-   test('verify that user can add items in to the cart by homepage ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage,homePage }) => {
+   test('verify that user can add items in to the cart by homepage ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage,homePage,cartPage }) => {
    await accountPage.navigateToHome();
    await homePage.clickOnRandomFeaturedProduct();
    await searchResultsPage.addItemToCart();
+   await cartPage.checkout();
   });
   
    test('verify that user can remove items in to the cart ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage,cartPage}) => {
    await accountPage.navigateToHome();
-   await navbar.searchForItem("Skinsheen Bronzer Stick");
+   await navbar.searchForItem(products.lipstick);
    await searchResultsPage.addItemToCart();
    await cartPage.removeItem();
-   await cartPage.verifyCartIsEmpty();
+   await cartPage.verifyRemovedItemNotInCart(products.lipstick);
+
   });
-   test('verify that user can add item with diffrent qty ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage }) => {
+   test('verify that user can add item with diffrent qty ', async ({ page, navbar, loggedIn,accountPage,cartPage,searchResultsPage }) => {
    await accountPage.navigateToHome();
-   await navbar.searchForItem("Skinsheen Bronzer Stick");
+   await navbar.searchForItem(products.skincare);
    await searchResultsPage.setQuantity(3);
    await searchResultsPage.addItemToCart();
+   await cartPage.checkout();
   });
 
-   test('verify that user remove all the items from the cart (empty cart) ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage }) => {
+   test('verify that user can remove all the items from the cart (empty cart) ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage }) => {
    await accountPage.navigateToHome();
-   await navbar.searchForItem("Skinsheen Bronzer Stick");
+   await navbar.searchForItem(products.bronzer);
    await searchResultsPage.setQuantity(3);
    await searchResultsPage.addItemToCart();
    await searchResultsPage.removeAllItemsFromCart();
    await searchResultsPage.verifyCartIsEmpty();
+
+  });
+
+  test('verify that user cant add out of the stock items ', async ({ page, navbar, loggedIn,accountPage,cartPage,searchResultsPage }) => {
+   await accountPage.navigateToHome();
+   await navbar.searchForItem(emptyProducts.skincare);
+   await searchResultsPage.verifyOutOfTheStock();
   });
 });
