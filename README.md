@@ -8,7 +8,7 @@ This repository contains automated tests for web applications using **Playwright
 
 ---
 
-## 📝 Features
+## Features
 - User account creation and login  
 - Product search and suggestions  
 - Add, remove, and update items in the cart  
@@ -18,7 +18,7 @@ This repository contains automated tests for web applications using **Playwright
 
 ---
 
-## 🛠 Frameworks & Tools
+## Frameworks & Tools
 - **Playwright** – End-to-end testing framework  
 - **Node.js** – Runtime environment  
 - **JavaScript / TypeScript** – Test scripting  
@@ -28,7 +28,7 @@ This repository contains automated tests for web applications using **Playwright
 
 ---
 
-## ⚙️ Setup Instructions
+## Setup Instructions
 
 1. **Clone the repository**
 
@@ -50,7 +50,7 @@ Create a .env file in the root directory
 
 ---
 
-## ⚙️ Running Tests Locally
+## Running Tests Locally
 
 1. **Run all tests**<br>
 npx playwright test

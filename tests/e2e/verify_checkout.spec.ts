@@ -35,6 +35,7 @@ test.describe("User checout cart items",
    await paymentPage.clickChangeAddress();
    await addressChangePage.clickContinue();
    await addressChangePage.isAnyErrorVisible();
+   console.log("Error message is visible for empty payment address");
   });
 
 

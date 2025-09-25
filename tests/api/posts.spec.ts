@@ -74,6 +74,7 @@ test('endpoint behavior-unconventional API behavior', async ({ request }) => {
     console.log('GET simulate DELETE Status 404.GET cannot delete a resource');
   } else {
     console.log('GET simulate DELETE Status:', getResponse.status());
+    console.log('Response Body:', await getResponse.json());
   }
 
   //In a real REST API, attempting to delete a resource via GET is invalid. 

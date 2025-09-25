@@ -41,14 +41,6 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      - name: Upload JUnit XML Report
-        uses: actions/upload-artifact@v4
-        if: ${{ always() }}
-        with:
-          name: playwright-junit-report
-          path: playwright-report/junit.xml
-          retention-days: 30
-
   run_cart_tag_tests:
     name: Run Playwright @cart Tag Tests
     runs-on: ubuntu-latest
@@ -77,13 +69,7 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      - name: Upload JUnit XML Report for @cart
-        uses: actions/upload-artifact@v4
-        if: ${{ always() }}
-        with:
-          name: playwright-junit-report-cart
-          path: playwright-report/junit.xml
-          retention-days: 30
+      
 
   run_login_tag_tests:
     name: Run Playwright @login Tag Tests
@@ -113,14 +99,7 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      - name: Upload JUnit XML Report for @login
-        uses: actions/upload-artifact@v4
-        if: ${{ always() }}
-        with:
-          name: playwright-junit-report-login
-          path: playwright-report/junit.xml
-          retention-days: 30
-
+      
 
   run_create_account_tag_tests:
     name: Run Playwright @create_account Tag Tests
@@ -150,13 +129,7 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      - name: Upload JUnit XML Report for @create_account
-        uses: actions/upload-artifact@v4
-        if: ${{ always() }}
-        with:
-          name: playwright-junit-report-create_account
-          path: playwright-report/junit.xml
-          retention-days: 30
+      
 
   run_checkout_tag_tests:
     name: Run Playwright @checkout Tag Tests
@@ -186,12 +159,5 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      - name: Upload JUnit XML Report for @checkout
-        uses: actions/upload-artifact@v4
-        if: ${{ always() }}
-        with:
-          name: playwright-junit-report-checkout
-          path: playwright-report/junit.xml
-          retention-days: 30
-
+     
 

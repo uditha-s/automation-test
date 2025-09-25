@@ -8,6 +8,7 @@ test.describe("User account creation",
     await page.goto('/');
     await navbar.goToLogin();
     await loginPage.clickOnContiue();
+    
 
   });
 
