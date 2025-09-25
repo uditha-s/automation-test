@@ -22,12 +22,18 @@ test.describe("User search items and add to cart ", () => {
    await navbar.searchForItem("");
    await searchResultsPage.verifyErrorMessage();
   });
-   test('verify that user can add items in to the cart ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage }) => {
+   test('verify that user can add items in to the cart by search ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage }) => {
    await accountPage.navigateToHome();
    await navbar.searchForItem("Skinsheen Bronzer Stick");
    await searchResultsPage.addItemToCart();
 
   });
+   test('verify that user can add items in to the cart by homepage ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage,homePage }) => {
+   await accountPage.navigateToHome();
+   await homePage.clickOnRandomFeaturedProduct();
+   await searchResultsPage.addItemToCart();
+  });
+  
    test('verify that user can remove items in to the cart ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage,cartPage}) => {
    await accountPage.navigateToHome();
    await navbar.searchForItem("Skinsheen Bronzer Stick");
