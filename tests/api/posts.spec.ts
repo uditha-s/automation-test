@@ -66,7 +66,7 @@ test('endpoint behavior-unconventional API behavior', async ({ request }) => {
   if (postResponse.status() === 404) {
     console.log('POST Update Status: 404.Cannot update an existing resource via POST');
   } else {
-    console.log('POST Update Statusxxxx:', postResponse.status());
+    console.log('POST Update Status :', postResponse.status());
   }
 
   const getResponse = await request.get(`${BASE_URL}/posts/101`);

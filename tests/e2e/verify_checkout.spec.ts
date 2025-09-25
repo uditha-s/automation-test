@@ -2,7 +2,8 @@ import { test, expect } from "../../fixtures/fixtures";
 import { CartPage } from "../../pages/cartPage";
 import { products } from "../../testdata/product";
 
-test.describe("User checout cart items", () => {
+test.describe("User checout cart items", 
+  {tag:['@checout']},async() => {
 
   test('verify that user can checkout cart items ', async ({ page, navbar, loggedIn,accountPage,confirmPage,cartPage,searchResultsPage,successPage }) => {
      await accountPage.navigateToHome();

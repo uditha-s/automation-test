@@ -1,7 +1,8 @@
 import { test, expect } from "../../fixtures/fixtures";
 import { generateUserData } from "../../testdata/userData";
 
-test.describe("User account creation", () => {
+test.describe("User account creation",
+   {tag:['@create_account']},async() => {
 
   test.beforeEach(async ({ page, navbar, loginPage }) => {
     await page.goto('/');
@@ -21,7 +22,6 @@ test.describe("User account creation", () => {
     const userData = generateUserData();
     await createAccountPage.fillDetails(userData);
     await createAccountPage.clickOnContinue();
-    console.log("First Name:", createAccountPage.getFirstName());
     
   });
 

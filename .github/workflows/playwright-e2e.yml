@@ -120,5 +120,76 @@ jobs:
           name: playwright-junit-report-login
           path: playwright-report/junit.xml
           retention-days: 30
+run_create_account_tag_tests:
+    name: Run Playwright @create_account Tag Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests with @create_account tag
+        run: npx playwright test --grep "@create_account" --reporter=html,junit
+
+      - name: Upload Playwright HTML Report for @create_account
+        uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: playwright-html-report-create_account
+          path: playwright-report/
+          retention-days: 30
+
+      - name: Upload JUnit XML Report for @create_account
+        uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: playwright-junit-report-create_account
+          path: playwright-report/junit.xml
+          retention-days: 30
+
+  run_checkout_tag_tests:
+    name: Run Playwright @checkout Tag Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests with @checkout tag
+        run: npx playwright test --grep "@checkout" --reporter=html,junit
+
+      - name: Upload Playwright HTML Report for @checkout
+        uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: playwright-html-report-checkout
+          path: playwright-report/
+          retention-days: 30
+
+      - name: Upload JUnit XML Report for @checkout
+        uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: playwright-junit-report-checkout
+          path: playwright-report/junit.xml
+          retention-days: 30
 
 
