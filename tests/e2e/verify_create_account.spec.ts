@@ -21,6 +21,7 @@ test.describe("User account creation", () => {
     const userData = generateUserData();
     await createAccountPage.fillDetails(userData);
     await createAccountPage.clickOnContinue();
+    page.waitForLoadState('domcontentloaded');
   });
 
   test('verify that user able to create new account', async ({ page, navbar, loginPage, createAccountPage, successPage }) => {
