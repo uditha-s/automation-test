@@ -1,6 +1,7 @@
 import { test, expect } from "../../fixtures/fixtures";
 
-test.describe("User log in to account", () => {
+test.describe("User log in to account", 
+  {tag:['@login']},async() => {
 
   test.beforeEach(async ({ page, navbar }) => {
     await page.goto('/');
