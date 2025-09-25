@@ -13,7 +13,7 @@ export class CartPage {
 
     async removeItem() {
         await this.removeButton.click();
-        await this.page.waitForTimeout(1000); // can also use locator.waitFor({ state: 'detached' })
+        await this.page.waitForLoadState('domcontentloaded');
     }
 
     async verifyCartIsEmpty() {

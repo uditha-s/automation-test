@@ -35,8 +35,7 @@ export class SearchResultsPage {
     const count = await this.removeButtons.count();
     for (let i = 0; i < count; i++) {
       await this.removeButtons.first().click();
-      await this.page.waitForTimeout(1000);
-       await this.page.waitForLoadState('domcontentloaded');  
+      await this.page.waitForLoadState('domcontentloaded');  
     }
     }
     async verifyCartIsEmpty() {
