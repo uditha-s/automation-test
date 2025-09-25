@@ -1,3 +1,3 @@
-export const emptyProducts = {
+export const outOfStock = {
   skincare: "Total Moisture Facial Cream",
 };

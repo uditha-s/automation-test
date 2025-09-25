@@ -3,7 +3,7 @@ import "../../utils/randomSearch"
 import searchData from "../../testdata/searchRandomData.json";
 import { getRandomItem } from "../../utils/randomSearch";
 import { products } from "../../testdata/product";
-import { emptyProducts } from "../../testdata/emptyProducts";
+import { outOfStock } from "../../testdata/outofStockProduts";
 
 
 test.describe("User search items and add to cart ", () => {
@@ -66,7 +66,7 @@ test.describe("User search items and add to cart ", () => {
 
   test('verify that user cant add out of the stock items ', async ({ page, navbar, loggedIn,accountPage,cartPage,searchResultsPage }) => {
    await accountPage.navigateToHome();
-   await navbar.searchForItem(emptyProducts.skincare);
+   await navbar.searchForItem(outOfStock.skincare);
    await searchResultsPage.verifyOutOfTheStock();
   });
 });
