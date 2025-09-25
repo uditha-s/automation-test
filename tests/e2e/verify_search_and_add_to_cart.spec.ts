@@ -39,7 +39,7 @@ test.describe('User search items and add to cart',
    await cartPage.checkout();
   });
   
-   test('verify that user can remove items in to the cart ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage,cartPage}) => {
+   test('verify that user can remove added item in to the cart ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage,cartPage}) => {
    await accountPage.navigateToHome();
    await navbar.searchForItem(products.lipstick);
    await searchResultsPage.addItemToCart();
@@ -55,7 +55,7 @@ test.describe('User search items and add to cart',
    await cartPage.checkout();
   });
 
-   test('verify that user can remove all the items from the cart (empty cart) ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage }) => {
+   test('verify that user can remove all of the items in the cart (empty cart) ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage }) => {
    await accountPage.navigateToHome();
    await navbar.searchForItem(products.bronzer);
    await searchResultsPage.setQuantity(3);
