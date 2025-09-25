@@ -28,7 +28,7 @@ test.describe("User checout cart items",
   test('verify that user cant checkout items with empty payment address ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage ,cartPage,confirmPage,paymentPage,addressChangePage}) => {
    await accountPage.navigateToHome();
    await navbar.searchForItem(products.bronzer);
-   await searchResultsPage.setQuantity(3);
+   await searchResultsPage.setQuantity(2);
    await searchResultsPage.addItemToCart();
    await cartPage.checkout();
    await confirmPage.clickEditPayment();
