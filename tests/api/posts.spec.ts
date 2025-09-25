@@ -51,7 +51,7 @@ test.describe('Posts API Tests', () => {
     const body = await response.json();
     expect(body.title).toBe('automation test API');
   });
-test('endpoint behavior - unconventional API behavior', async ({ request }) => {
+test('endpoint behavior-unconventional API behavior', async ({ request }) => {
   
   const putPayload = { id: 10001, title: 'PUT Insert', body: 'Test PUT', userId: 1 };
   const putResponse = await request.put(`${BASE_URL}/posts/10001`, { data: putPayload });
