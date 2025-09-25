@@ -1,4 +1,4 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 export class LoginPage {
  
   readonly page: Page;
@@ -21,10 +21,14 @@ export class LoginPage {
     async clickOnContiue() {
         await this.btn_continue.click();
     }
-    async loggin(username: string, password: string) {
+    async login(username: string, password: string) {
         await this.username.fill(username);
         await this.password.fill(password);
         await this.btn_login.click();
     }
+    async expectLoginError() {
+    await expect(this.page.locator(".alert.alert-danger"))
+    .toHaveText("× Error: Incorrect login or password provided.");
+}
     
 }

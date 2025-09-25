@@ -15,6 +15,7 @@ export class CreateAccountPage {
   readonly usernameConfirm: Locator
   readonly privecyPolicy: Locator
   readonly btn_continue: Locator
+  savedFirstName: any;
 
   constructor(page: Page) {
     this.page = page;
@@ -35,6 +36,7 @@ export class CreateAccountPage {
 
   async fillDetails(data: { firstName: any; lastName: any; email: any; address: any; city: any; region: any; postalCode: any; country: any; username?: string; password: any; confirmPassword?: string; }) {
     await this.fristName.fill(data.firstName);
+    this.savedFirstName = data.firstName;
     await this.lastName.fill(data.lastName);
     await this.email.fill(data.email);
     await this.address.fill(data.address);
@@ -51,4 +53,19 @@ export class CreateAccountPage {
   async clickOnContinue() {
     await this.btn_continue.click();
   }
+
+    getFirstName(): string | undefined {
+    return this.savedFirstName;
+  }
+  
+  async verifyFirstNameOnUI() {
+    await this.fristName.waitFor();
+    const value = await this.fristName.inputValue();
+    if (value !== this.savedFirstName) {
+      throw new Error(
+        `First name mismatch: expected ${this.savedFirstName}, got ${value}`
+      );
+    }
+    }
+
 }

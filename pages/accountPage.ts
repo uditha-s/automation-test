@@ -1,4 +1,4 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 export class AccountPage {
  
   readonly page: Page;
@@ -13,6 +13,7 @@ export class AccountPage {
 
     async navigateToHome() {
         await this.btn_home.nth(0).click();
+        expect (this.page).toHaveURL('/');
     }
     
 }

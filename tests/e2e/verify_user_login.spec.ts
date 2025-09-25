@@ -13,44 +13,25 @@ test.describe("User log in to account", () => {
   });
 
   test('verify that user can log in to the account with valid user name and password ', async ({ page, loginPage }) => {
-    await loginPage.loggin(process.env.USERNAME_LOGIN!, process.env.PASSWORD_LOGIN!);
+    await loginPage.login(process.env.USERNAME_LOGIN!, process.env.PASSWORD_LOGIN!);
     await expect(page).toHaveURL(/.*account/);
   });
 
-  test('verify that user cant log in to the account with invalid user name and password ', async ({ page, loginPage }) => {
-    await loginPage.loggin(process.env.USERNAME_INVALID!, process.env.USERNAME_INVALID!);
-    await expect(page).toHaveURL(/.*login/);
-    await expect(page.locator(".alert.alert-danger")).toHaveText("× Error: Incorrect login or password provided.");
-  });
+  const invalidCredentials = [
+    { username: "", password: "" },
+    { username: "", password: process.env.PASSWORD_LOGIN! },
+    { username: process.env.USERNAME_LOGIN!, password: "" },
+    { username: process.env.USERNAME_INVALID!, password: process.env.PASSWORD_LOGIN! },
+    { username: process.env.USERNAME_LOGIN!, password: process.env.PASSWORD_INVALID! },
+    { username: process.env.USERNAME_INVALID!, password: process.env.USERNAME_INVALID! },
+  ];
 
-  test('verify that user cant log in to the account with empty user name and password ', async ({ page, loginPage }) => {
-    await loginPage.loggin("", "");
-    await expect(page).toHaveURL(/.*login/);
-    await expect(page.locator(".alert.alert-danger")).toHaveText("× Error: Incorrect login or password provided.");
-  });
-
-  test('verify that user cant log in with empty user name and correct password ', async ({ page, loginPage }) => {
-    await loginPage.loggin("", process.env.PASSWORD_LOGIN!);
-    await expect(page).toHaveURL(/.*login/);
-    await expect(page.locator(".alert.alert-danger")).toHaveText("× Error: Incorrect login or password provided.");
-  });
-
-  test('verify that user cant log in with correct user name and empty password ', async ({ page, loginPage }) => {
-    await loginPage.loggin(process.env.USERNAME_LOGIN!, "");
-    await expect(page).toHaveURL(/.*login/);
-    await expect(page.locator(".alert.alert-danger")).toHaveText("× Error: Incorrect login or password provided.");
-  });
-
-  test('verify that user cant log in with incorrect user name and correct password ', async ({ page, loginPage }) => {
-    await loginPage.loggin(process.env.USERNAME_INVALID!, process.env.PASSWORD_LOGIN!);
-    await expect(page).toHaveURL(/.*login/);
-    await expect(page.locator(".alert.alert-danger")).toHaveText("× Error: Incorrect login or password provided.");
-  });
-
-  test('verify that user cant log in with correct user name and incorrect password ', async ({ page, loginPage }) => {
-    await loginPage.loggin(process.env.USERNAME_LOGIN!, process.env.PASSWORD_INVALID!);
-    await expect(page).toHaveURL(/.*login/);
-    await expect(page.locator(".alert.alert-danger")).toHaveText("× Error: Incorrect login or password provided.");
+  invalidCredentials.forEach(({ username, password }) => {
+    test(`User cannot log in with username='${username}' and password='${password}'`, async ({ page, loginPage }) => {
+      await loginPage.login(username, password);
+      await expect(page).toHaveURL(/.*login/);
+      await loginPage.expectLoginError();
+    });
   });
 
 });

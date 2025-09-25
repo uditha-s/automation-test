@@ -1,4 +1,4 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 
 export class Navbar {
 
@@ -10,6 +10,7 @@ export class Navbar {
   readonly btn_checkout: Locator;
   readonly input_search: Locator;
   readonly btn_search: Locator;
+  readonly accountNameLabel: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -21,6 +22,7 @@ export class Navbar {
     this.btn_checkout = page.locator('a.top.menu_checkout');
     this.input_search = page.locator('#filter_keyword');
     this.btn_search = page.locator('.button-in-search');
+    this.accountNameLabel = page.getByText(/^Welcome back/);
   }
 
   
@@ -51,6 +53,11 @@ export class Navbar {
   async searchForItem(item: string) {
     await this.input_search.fill(item);
     await this.btn_search.click();
+  }
+  async verifyFirstName(expectedFirstName: string) {
+    await expect(this.accountNameLabel).toHaveText(
+      new RegExp(`Welcome back ${expectedFirstName}`, "i")
+    );
   }
 
 
