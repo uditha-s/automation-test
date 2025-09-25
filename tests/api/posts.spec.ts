@@ -42,7 +42,6 @@ test.describe('Posts API Tests', () => {
 
   test('Update a post', async ({ request }) => {
     const payload = {
-      id: 1,
       title: 'automation test API',
       body: 'automation test API',
       userId: 1
@@ -50,7 +49,7 @@ test.describe('Posts API Tests', () => {
     const response = await request.put(`${BASE_URL}/posts/1`, { data: payload });
     expect(response.status()).toBe(200);
     const body = await response.json();
-    expect(body.title).toBe('Updated Title');
+    expect(body.title).toBe('automation test API');
   });
 test('endpoint behavior - unconventional API behavior', async ({ request }) => {
   
