@@ -41,6 +41,19 @@ test.describe("User search items and add to cart ", () => {
    await cartPage.removeItem();
    await cartPage.verifyCartIsEmpty();
   });
-  
+   test('verify that user can add item with diffrent qty ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage }) => {
+   await accountPage.navigateToHome();
+   await navbar.searchForItem("Skinsheen Bronzer Stick");
+   await searchResultsPage.setQuantity(3);
+   await searchResultsPage.addItemToCart();
+  });
 
+   test('verify that user remove all the items from the cart (empty cart) ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage }) => {
+   await accountPage.navigateToHome();
+   await navbar.searchForItem("Skinsheen Bronzer Stick");
+   await searchResultsPage.setQuantity(3);
+   await searchResultsPage.addItemToCart();
+   await searchResultsPage.removeAllItemsFromCart();
+   await searchResultsPage.verifyCartIsEmpty();
+  });
 });
