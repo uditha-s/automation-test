@@ -6,7 +6,8 @@ import { products } from "../../testdata/product";
 import { outOfStock } from "../../testdata/outofStockProduts";
 
 
-test.describe("User search items and add to cart ", () => {
+test.describe('User search items and add to cart',
+  {tag:['@cart']},async() => {
 
   test('verify that user can search items in the website ', async ({ page, navbar, loggedIn,accountPage }) => {
    const randomSearchItem = getRandomItem(searchData.items);

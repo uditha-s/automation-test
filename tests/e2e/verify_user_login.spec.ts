@@ -8,7 +8,7 @@ test.describe("User log in to account", () => {
     await navbar.goToLogin();
   });
 
-  test('User can navigate to login page', async ({ page }) => {
+  test('user can navigate to login page', async ({ page }) => {
     await expect(page).toHaveURL(/.*login/);
   });
 
