@@ -4,7 +4,7 @@
 [![Playwright](https://img.shields.io/badge/Playwright-1.x-blue)](https://playwright.dev/)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
-This repository contains automated tests for web applications using **Playwright** with **JavaScript/TypeScript**, designed for end-to-end testing of user workflows such as account management, search, and cart operations.
+This repository contains automated tests for web applications using **Playwright** with **TypeScript**, designed for end-to-end testing of user workflows such as account management, search, and cart operations in the website.
 
 ---
 
