@@ -8,7 +8,7 @@ test.describe("User account creation",
     await page.goto('/');
     await navbar.goToLogin();
     await loginPage.clickOnContiue();
-    
+
 
   });
 
@@ -17,23 +17,21 @@ test.describe("User account creation",
     await expect(page).toHaveURL('/');
   });
 
-  test('verify that user able to fill mandatory field when creating new account ', async ({ page, navbar, loginPage, createAccountPage }) => {
-
-
+  test('verify that user able to fill mandatory field when creating new account ', async ({ createAccountPage }) => {
     const userData = generateUserData();
     await createAccountPage.fillDetails(userData);
     await createAccountPage.clickOnContinue();
     
   });
 
-  test('verify that user able to create new account', async ({ page, navbar, loginPage, createAccountPage, successPage }) => {
+  test('verify that user able to create new account', async ({  createAccountPage, successPage }) => {
     const userData = generateUserData();
     await createAccountPage.fillDetails(userData);
     await createAccountPage.clickOnContinue();
     await successPage.clickOnContiue();
   });
 
-  test('verify that new user able to navigate home page after creating new account', async ({ page, navbar, loginPage, createAccountPage, successPage, accountPage,homePage }) => {
+  test('verify that new user able to navigate home page after creating new account', async ({ page, navbar, createAccountPage, successPage, accountPage }) => {
     const userData = generateUserData();
     await createAccountPage.fillDetails(userData);
     await createAccountPage.clickOnContinue();
@@ -43,14 +41,14 @@ test.describe("User account creation",
     await navbar.verifyFirstName(savedName!);
 
   });
-    test('verify that user cant create account without agree to privacy policy details', async ({ page, navbar, loginPage, createAccountPage, successPage }) => {
+    test('verify that user cant create account without agree to privacy policy details', async ({ createAccountPage}) => {
     const userData = generateUserData();
     await createAccountPage.fillDetails(userData);
     await createAccountPage.uncheckPrivacyPolicy();
     await createAccountPage.clickOnContinue();
     await createAccountPage.verifyPrivacyPolicyError();
   });
- test('verify that user cant create account without filling details', async ({ page, navbar, loginPage, createAccountPage, successPage }) => {
+ test('verify that user cant create account without filling details', async ({createAccountPage }) => {
     
     await createAccountPage.checkPrivacyPolicy();
     await createAccountPage.clickOnContinue();

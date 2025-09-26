@@ -9,18 +9,18 @@ import { outOfStock } from "../../testdata/outofStockProduts";
 test.describe('User search items and add to cart',
   {tag:['@cart']},async() => {
 
-  test('verify that user can search items in the website ', async ({ page, navbar, loggedIn,accountPage }) => {
+  test('verify that user can search items in the website ', async ({ navbar, loggedIn,accountPage }) => {
    const randomSearchItem = getRandomItem(searchData.items);
    await accountPage.navigateToHome();
    await navbar.searchForItem(randomSearchItem);
   });
-   test('verify that user can see error mesaage when search invalid item ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage }) => {
+   test('verify that user can see error mesaage when search invalid item ', async ({ navbar, loggedIn,accountPage,searchResultsPage }) => {
    await accountPage.navigateToHome();
    await navbar.searchForItem("invaliditem_data");
    await searchResultsPage.verifyErrorMessage();
    
   });
- test('verify that user can see error mesaage when search with empty field ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage }) => {
+ test('verify that user can see error mesaage when search with empty field ', async ({ navbar, loggedIn,accountPage,searchResultsPage }) => {
    await accountPage.navigateToHome();
    await navbar.searchForItem("");
    await searchResultsPage.verifyErrorMessage();
@@ -32,7 +32,7 @@ test.describe('User search items and add to cart',
    await searchResultsPage.addItemToCart();
    
   });
-   test('verify that user can add items in to the cart by homepage ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage,homePage,cartPage }) => {
+   test('verify that user can add items in to the cart by homepage ', async ({ loggedIn,accountPage,searchResultsPage,homePage,cartPage }) => {
    await accountPage.navigateToHome();
    await homePage.clickOnRandomFeaturedProduct();
    await searchResultsPage.addItemToCart();
@@ -47,7 +47,7 @@ test.describe('User search items and add to cart',
    await cartPage.verifyRemovedItemNotInCart(products.lipstick);
 
   });
-   test('verify that user can add item with diffrent qty ', async ({ page, navbar, loggedIn,accountPage,cartPage,searchResultsPage }) => {
+   test('verify that user can add item with diffrent qty ', async ({ navbar, loggedIn,accountPage,cartPage,searchResultsPage }) => {
    await accountPage.navigateToHome();
    await navbar.searchForItem(products.skincare);
    await searchResultsPage.setQuantity(3);
@@ -55,7 +55,7 @@ test.describe('User search items and add to cart',
    await cartPage.checkout();
   });
 
-   test('verify that user can remove all of the items in the cart (empty cart) ', async ({ page, navbar, loggedIn,accountPage,searchResultsPage }) => {
+   test('verify that user can remove all of the items in the cart (empty cart) ', async ({  navbar, loggedIn,accountPage,searchResultsPage }) => {
    await accountPage.navigateToHome();
    await navbar.searchForItem(products.bronzer);
    await searchResultsPage.setQuantity(3);
@@ -65,7 +65,7 @@ test.describe('User search items and add to cart',
 
   });
 
-  test('verify that user cant add out of the stock items ', async ({ page, navbar, loggedIn,accountPage,cartPage,searchResultsPage }) => {
+  test('verify that user cant add out of the stock items ', async ({ navbar, loggedIn,accountPage,searchResultsPage }) => {
    await accountPage.navigateToHome();
    await navbar.searchForItem(outOfStock.skincare);
    await searchResultsPage.verifyOutOfTheStock();
